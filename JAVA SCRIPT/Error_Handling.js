@@ -5,7 +5,7 @@ try{
         
     console.log(vicky)
 }
-catch(Error){
+catch(Error ){
     console.log(Error)
 }
 
