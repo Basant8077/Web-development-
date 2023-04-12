@@ -7,7 +7,7 @@
 // });
 
 // p1.then((value)=>{
-//     console.log(value)
+//     console.log(value) //* value of fist promise i.e 56
 //     //* custom promice
 //     let p2 = new Promise((resolve, reject) =>{
 //         setTimeout(()=>{
@@ -17,12 +17,15 @@
 //     return p2
 // }).then((value)=>{
 //     console.log("We are done")
+//      console.log(value) //* value of p2 promise = promise 2
 //     return 2
 // }).then((value)=>{
 //     console.log("Now we are pakka done")
+        // console.log(value) //* value of previous then i.e 2
 // })
 
 //! load script function
+
 const loadscript=(url)=>{
     return new Promise((resolve, reject) => {
 

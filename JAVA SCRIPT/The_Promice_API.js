@@ -30,9 +30,9 @@
 
 // let Promise_all = Promise.all([p1,p2,p3]) //? only work when all promices resolve
 
-let Promise_all = Promise.allSettled([p1,p2,p3])
+// let Promise_all = Promise.allSettled([p1,p2,p3])
 // let Promise_all = Promise.race([p1,p2,p3])
-// let Promise_all = Promise.any([p1,p2,p3])
+let Promise_all = Promise.any([p1,p2,p3])
 // let Promise_all = Promise.resolve(6)
 // let Promise_all = Promise.reject(new Error("Error"))
 
