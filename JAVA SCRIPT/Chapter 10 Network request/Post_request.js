@@ -1,4 +1,4 @@
-
+//html load page on fetch api
 const createtodo = async (todo) => {
     let option = {
         method: "POST",
@@ -25,7 +25,7 @@ const mainfunc = async () => {
         userId: 07,
     }
     let todor = await createtodo(todo)
-    console.log(todo)
+    console.log(todor)
     console.log(await gettodo(101))
 }
 mainfunc()

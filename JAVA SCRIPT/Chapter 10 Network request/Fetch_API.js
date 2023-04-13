@@ -1,10 +1,11 @@
 let Option ={
     //* option is an object
+    //option is us to post apis without option it fectch act as a get api
     headers: {
         "content-type": "application/json"
 }
 }
-let p = fetch(" API url" , Option)
+let p = fetch(" API url")
 
 
 p.then((Response) => {
