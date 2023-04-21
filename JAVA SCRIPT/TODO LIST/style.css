@@ -1,0 +1,11 @@
+.box {
+    margin-top: 12vh;
+    width: auto;
+}
+
+#todo {
+    background-color: rgb(201, 222, 241);
+    margin-top: 41px;
+    border-radius: 18px;
+    border: 1px solid black;
+}
