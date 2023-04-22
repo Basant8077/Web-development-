@@ -1,0 +1,39 @@
+.first {
+    background-color: antiquewhite;
+    height: 31vh;
+    width: auto;
+    text-align: center;
+    margin-top: 72px;
+}
+.form{
+    text-align: center;
+    margin: 10px auto;
+    height: 15vh;
+}
+.timer_input{
+    height: 7vh;
+    width: 40vw;
+    text-align: center;
+    font-size: 24px;
+}
+.button_style{
+    
+    text-align: center;
+    height: 10vh;
+    width: 40vw;
+    font-weight: bolder;
+    background-color: #4681f4;
+    color: black;
+    margin-left: 450px;
+    margin-top: 20px;
+    border-radius: 15px;
+}
+.status{
+    text-align: center;
+    color: red;
+    /* background-color: aquamarine; */
+    font-size: medium;
+    height: 10vh;
+    width: 30vw;
+
+}
