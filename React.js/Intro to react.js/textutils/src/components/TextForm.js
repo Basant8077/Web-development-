@@ -30,7 +30,7 @@ export default function TextForm(props) {
     }
     const sentence = ()=>{
 
-        let data = text.split('');
+        let data = text.split(''); //split in charcter array [a,w,e,d,d,w,f]
         let count = 0;
         for(let i =0 ; i < data.length ; i++)
         {
@@ -65,6 +65,21 @@ export default function TextForm(props) {
         let newText = text.toUpperCase();
         setText(newText)
     }
+    const handlespace=()=>{
+
+        let newText = text.split(/[  ]+/); 
+        //* [] charcter set matches any given set in here 2 spaces
+        //* + is use for to select more than 1 that type of selector
+        setText(newText.join(" "))
+
+    }
+
+    const copytext=()=>{
+        let text = document.getElementById("exampleFormControlTextarea1")
+        text.select();
+        navigator.clipboard.writeText(text.value)
+
+    }
 
     const handleclear = () => {
         setText("");
@@ -83,6 +98,8 @@ export default function TextForm(props) {
                 } onChange={handleonchange} id="exampleFormControlTextarea1" rows="5"></textarea>
                 <button className='btn btn-outline-primary' onClick={handleonclick} >Convert to Uppercase</button>
                 <button className='btn btn-outline-primary mx-3' onClick={handlelower} >Convert to Lowercase</button>
+                <button className='btn btn-outline-primary mx-3' onClick={handlespace} >Remove spaces</button>
+                <button className='btn btn-primary mx-3' onClick={copytext} >Copy all</button>
                 <button className='btn btn-danger mx-3' onClick={handleclear} >Clear All</button>
             </div>
 

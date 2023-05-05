@@ -1,5 +1,6 @@
 
 import './App.css';
+import About from './components/About';
 import Navbar from './components/Navbar';
 import TextForm from './components/TextForm';
 
@@ -15,7 +16,7 @@ function App() {
       <Navbar title = "Text-utils"  / >
       
       <TextForm Heading ="Enter The Text to analyse " />
-    
+      <About  />
     </>
   );
 }
