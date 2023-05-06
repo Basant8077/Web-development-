@@ -4,7 +4,7 @@ export default function About() {
 
   const [myStyle, setmystyle] = useState({  //my style will take an object
     color: 'white',
-    backgroundColor: '#282828'
+    backgroundColor: '#6c757d'
   });
   const[btn , btnChange] = useState('Light Mode');
 
