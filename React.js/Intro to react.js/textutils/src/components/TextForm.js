@@ -72,6 +72,7 @@ export default function TextForm(props) {
         //* [] charcter set matches any given set in here 2 spaces
         //* + is use for to select more than 1 that type of selector
         setText(newText.join(" "))
+        props.changeAlert("Unwanted spaces removed ", "success")
 
     }
 
@@ -79,12 +80,13 @@ export default function TextForm(props) {
         let text = document.getElementById("exampleFormControlTextarea1")
         text.select();
         navigator.clipboard.writeText(text.value)
+        props.changeAlert("Copied to Clipbard", "success")
 
     }
 
     const handleclear = () => {
         setText("");
-        props.changeAlert("Text is cleared", "success")
+        props.changeAlert("Text is cleared", "danger")
     }
 
 
