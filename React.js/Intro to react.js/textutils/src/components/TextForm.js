@@ -143,7 +143,7 @@ export default function TextForm(props) {
                 <div className="container my-4">
                     <p>1) Number of characters (without spaces) = <b>{findcharcters()}</b>  </p>
                     <p>2) Number of characters (with spaces) = <b>{text.length}</b></p>
-                    <p>3) Number of Words = <b>{text.split(" ").filter((element)=>{
+                    <p>3) Number of Words = <b>{text.split(/\s+/).filter((element)=>{
                         return element.length!==0;
                     }).length}</b>  </p>
                     <p>4) Number of syllabuls = <b>{display()}</b> </p>
