@@ -53,7 +53,11 @@ export default function TextForm(props) {
     const handlelower = () => {
         let lower_Text = text.toLowerCase();
         setText(lower_Text);
-        props.changeAlert("Text changed to Lower Case", "success")
+        let emptyShell = text;
+        if(emptyShell.length!==0){
+            
+            props.changeAlert("Text changed to Lower Case", "success")
+        }
     }
     const handleonchange = (event) => {
 
@@ -64,7 +68,11 @@ export default function TextForm(props) {
 
         let newText = text.toUpperCase();
         setText(newText)
-        props.changeAlert("Text changed to Upper Case", "success")
+       
+        let emptyShell = text;
+        if(emptyShell.length !==0){
+            props.changeAlert("Text changed to Upper Case", "success")
+        }
     }
     const handlespace = () => {
 
@@ -72,7 +80,11 @@ export default function TextForm(props) {
         //* [] charcter set matches any given set in here 2 spaces
         //* + is use for to select more than 1 that type of selector
         setText(newText.join(" "))
-        props.changeAlert("Unwanted spaces removed ", "success")
+        let emptyShell = text;
+        if(emptyShell.length!==0){
+            props.changeAlert("Unwanted spaces removed ", "success")
+
+        }
 
     }
 
@@ -80,13 +92,22 @@ export default function TextForm(props) {
         let text = document.getElementById("exampleFormControlTextarea1")
         text.select();
         navigator.clipboard.writeText(text.value)
-        props.changeAlert("Copied to Clipbard", "success")
+        document.getSelection().removeAllRanges();
+        let emptyShell = text;
+        if(emptyShell.length!==0){
+            props.changeAlert("Copied to Clipbard", "success")
+        }
 
     }
 
     const handleclear = () => {
         setText("");
-        props.changeAlert("Text is cleared", "danger")
+        let emptyShell = text;
+        if(emptyShell.length!==0)
+        {
+
+            props.changeAlert("Text is cleared", "danger")
+        }
     }
 
 
@@ -97,7 +118,7 @@ export default function TextForm(props) {
     return (
         <>
             <div className="container my-4 ">
-                <h3>{props.Heading}</h3>
+                <h3 className='mb-4'>{props.Heading}</h3>
                 {/* method 1 bg-${props.mode} text-${props.mode==='light'?'dark':'light'} */}
                 <textarea className={`form-control my-3}`} style={{
                     backgroundColor: props.mode === 'light' ? 'white' : '#6c757d',
@@ -106,11 +127,11 @@ export default function TextForm(props) {
                 } onChange={handleonchange} id="exampleFormControlTextarea1" rows="5"></textarea>
 
                 <div className="container my-4">
-                    <button className='btn btn-outline-primary' onClick={handleonclick} >Convert to Uppercase</button>
-                    <button className='btn btn-outline-primary mx-3' onClick={handlelower} >Convert to Lowercase</button>
-                    <button className='btn btn-outline-primary mx-3' onClick={handlespace} >Remove spaces</button>
-                    <button className='btn btn-primary mx-3' onClick={copytext} >Copy all</button>
-                    <button className='btn btn-danger mx-3' onClick={handleclear} >Clear All</button>
+                    <button className='btn btn-outline-primary mx-3 my-2' onClick={handleonclick} >Convert to Uppercase</button>
+                    <button className='btn btn-outline-primary mx-3 my-2' onClick={handlelower} >Convert to Lowercase</button>
+                    <button className='btn btn-outline-primary mx-3 my-2' onClick={handlespace} >Remove spaces</button>
+                    <button className='btn btn-primary mx-3 my-2' onClick={copytext} >Copy all</button>
+                    <button className='btn btn-danger mx-3 my-2' onClick={handleclear} >Clear All</button>
                 </div>
 
 
@@ -122,13 +143,15 @@ export default function TextForm(props) {
                 <div className="container my-4">
                     <p>1) Number of characters (without spaces) = <b>{findcharcters()}</b>  </p>
                     <p>2) Number of characters (with spaces) = <b>{text.length}</b></p>
-                    <p>3) Number of Words = <b>{text.split(" ").length}</b>  </p>
+                    <p>3) Number of Words = <b>{text.split(" ").filter((element)=>{
+                        return element.length!==0;
+                    }).length}</b>  </p>
                     <p>4) Number of syllabuls = <b>{display()}</b> </p>
                     <p>5) Sentences = <b>{displaysentence()}</b></p>
                     <p> Time take to read = <b>{(text.length * 0.087).toFixed(3)} Seconds , {(text.length * 0.001464).toFixed(6)} Minutes</b> </p>
 
                     <h3>Preview of text</h3>
-                    <p>{text.length > 0 ? text : "Enter some text above"}</p>
+                    <p>{text.length > 0 ? text : "Nothing to preview"}</p>
                 </div>
             </div>
         </>

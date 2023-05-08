@@ -54,8 +54,8 @@ function App() {
       {/* <Navbar title = "Text-utils"  aboutus = "About text utils" / > */}
       <Navbar title = "Text-utils" mode = {mode} toggleMode ={change}/ >
       <Alert alert={alert}/>
-      
-      <TextForm Heading ="Enter The Text to analyse " mode = {mode} changeAlert = {changeAlert}/>
+        
+      <TextForm Heading =" Text-utls - | Word counter | Text Counter | Text-Upgadation" mode = {mode} changeAlert = {changeAlert}/>
       {/* <About  /> */}
     </>
   );
