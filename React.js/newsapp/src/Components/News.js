@@ -1,122 +1,74 @@
 import React, { Component } from 'react'
-import Newsitem from './Newsitem'
+import NewsItem from './Newsitem'
 
-export default class News extends Component {
-    articles = [
-        {
-            "source": {
-                "id": "business-insider",
-                "name": "Business Insider"
-            },
-            "author": "Linette Lopez",
-            "title": "AI technology like ChatGPT is Silicon Valley attempt to save their business, avoid a stock market crash",
-            "description": "The rush to go all in on AI is the tech world's desperate, last-ditch attempt to avoid a stock market wipeout.",
-            "url": "http://www.businessinsider.com/ai-technology-chatgpt-silicon-valley-save-business-stock-market-jobs-2023-5",
-            "urlToImage": "https://i.insider.com/6453f378b4a8cd00187acc39?width=1200&format=jpeg",
-            "publishedAt": "2023-05-07T09:59:00Z",
-            "content": "Silicon Valley has entered the Hail Mary phase of its business cycle a desertic part of a tech-industry downturn where desperation can turn into recklessness.\r\nThe biggest players of the last decade … [+12675 chars]"
-        },
-        {
-            "source": {
-                "id": "business-insider-uk",
-                "name": "Business Insider (UK)"
-            },
-            "author": "Linette Lopez",
-            "title": "AI technology like ChatGPT is Silicon Valley attempt to save their business, avoid a stock market crash",
-            "description": "The rush to go all in on AI is the tech world's desperate, last-ditch attempt to avoid a stock market wipeout.",
-            "url": "http://uk.businessinsider.com/ai-technology-chatgpt-silicon-valley-save-business-stock-market-jobs-2023-5",
-            "urlToImage": "https://i.insider.com/6453f378b4a8cd00187acc39?width=1200&format=jpeg",
-            "publishedAt": "2023-05-07T09:59:00Z",
-            "content": "Silicon Valley has entered the Hail Mary phase of its business cycle a desertic part of a tech-industry downturn where desperation can turn into recklessness.\r\nThe biggest players of the last decade … [+12675 chars]"
-        },
-        {
-            "source": {
-                "id": "next-big-future",
-                "name": "Next Big Future"
-            },
-            "author": "Brian Wang",
-            "title": "Artificial Intelligence for Music Production | NextBigFuture.com",
-            "description": "Audialab, an innovative technology company specializing in using AI to empower musicians and music producers, has debuted Deep Sampler, a new AI-powered tool",
-            "url": "https://www.nextbigfuture.com/2023/05/artificial-intelligence-for-music-production.html",
-            "urlToImage": "https://nextbigfuture.s3.amazonaws.com/uploads/2023/05/Screen-Shot-2023-05-05-at-2.46.38-PM.jpg",
-            "publishedAt": "2023-05-05T21:47:27Z",
-            "content": "Audialab, an innovative technology company specializing in using AI to empower musicians and music producers, has debuted Deep Sampler, a new AI-powered tool that represents a paradigm shift in profe… [+2530 chars]"
-        },
-        {
-            "source": {
-                "id": "next-big-future",
-                "name": "Next Big Future"
-            },
-            "author": "Brian Wang",
-            "title": "NASA Funds Icon 3D Homes for Lunar and Mars Construction | NextBigFuture.com",
-            "description": "Icon is developing the Olympus’ printing technology processes to turn local lunar regolith (moon dust) into a super strong building material using only energy",
-            "url": "https://www.nextbigfuture.com/2023/05/nasa-funds-icon-3d-homes-for-lunar-and-mars-construction.html",
-            "urlToImage": "https://nextbigfuture.s3.amazonaws.com/uploads/2023/05/Screen-Shot-2023-05-04-at-1.20.14-PM.jpg",
-            "publishedAt": "2023-05-04T20:30:41Z",
-            "content": "Brian Wang is a Futurist Thought Leader and a popular Science blogger with 1 million readers per month. His blog Nextbigfuture.com is ranked #1 Science News Blog. It covers many disruptive technology… [+593 chars]"
-        },
-        {
-            "source": {
-                "id": "the-next-web",
-                "name": "The Next Web"
-            },
-            "author": "Siôn Geschwindt",
-            "title": "UK competition watchdog probes AI market amid safety concerns",
-            "description": "The UK’s competition watchdog has launched a review of the artificial intelligence market, in an effort to weigh up the potential opportunities and risks of a technology Bill Gates ...",
-            "url": "http://thenextweb.com/news/uk-competition-watchdog-probes-ai-market-amid-safety-concerns",
-            "urlToImage": "https://img-cdn.tnwcdn.com/image/tnw-blurple?filter_last=1&fit=1280%2C640&url=https%3A%2F%2Fcdn0.tnwcdn.com%2Fwp-content%2Fblogs.dir%2F1%2Ffiles%2F2023%2F05%2FUK-watchdog-AI-review-CMA.jpg&signature=c24c7f320fbbf29ddda3d50c25fec3a2",
-            "publishedAt": "2023-05-04T14:31:04Z",
-            "content": "The UKs competition watchdog has launched a review of the artificial intelligence market, in an effort to weigh up the potential opportunities and risks of a technology Bill Gates dubs as revolutiona… [+4064 chars]"
-        },
-        {
-            "source": {
-                "id": "recode",
-                "name": "Recode"
-            },
-            "author": "Sigal Samuel",
-            "title": "Can new brain-computer interface technology read your thoughts?",
-            "description": "An AI-powered “brain decoder” can now decode your thoughts with surprising accuracy",
-            "url": "https://www.vox.com/future-perfect/2023/5/4/23708162/neurotechnology-mind-reading-brain-neuralink-brain-computer-interface",
-            "urlToImage": "https://cdn.vox-cdn.com/thumbor/TMxQDVRgBqrryTqSJvjGaGp2J-g=/0x287:4000x2381/fit-in/1200x630/cdn.vox-cdn.com/uploads/chorus_asset/file/24631072/tang_prepping_mri_participant_full.jpg",
-            "publishedAt": "2023-05-04T11:30:00Z",
-            "content": "For a few years now, Ive been writing articles on neurotechnology with downright Orwellian headlines. Headlines that warn Facebook is building tech to read your mind and Brain-reading tech is coming.… [+7322 chars]"
-        },
-        {
-            "source": {
-                "id": "newsweek",
-                "name": "Newsweek"
-            },
-            "author": "Mark Davis",
-            "title": "Newsweek",
-            "description": "Newsweek provides in-depth analysis, news and opinion about international issues, technology, business, culture and politics.",
-            "url": "https://www.newsweek.com/",
-            "urlToImage": "https://d.newsweek.com/en/full/2202468/special-presidential-envoy-climate-john-kerry.jpg",
-            "publishedAt": "2023-03-01T12:07:28.8517009Z",
-            "content": null
-        }
-    ]
-    constructor() {
-        super();
+export class News extends Component {
+
+    constructor(props) {
+        super(props);
         console.log("News constructor")
         this.state = {
-            articles : this.articles,
-            loading: false
+            articles: [],
+            loading: false,
+            page: 1,
+
+        }
+    }
+
+    async componentDidMount() {
+        let url = "https://newsapi.org/v2/top-headlines?country=in&apiKey=dbe57b028aeb41e285a226a94865f7a7&page=1pageSize=20";
+        let data = await fetch(url);
+        let parsedData = await data.json()
+        console.log(parsedData);
+        this.setState({ articles: parsedData.articles, totalResults: parsedData.totalResults })
+    }
+
+    handlePrevClick = async () => {
+        console.log("Previous");
+        let url = `https://newsapi.org/v2/top-headlines?country=in&apiKey=dbe57b028aeb41e285a226a94865f7a7&page=${this.state.page - 1}&pageSize=20`;
+        let data = await fetch(url);
+        let parsedData = await data.json()
+        console.log(parsedData);
+        this.setState({
+            page: this.state.page - 1,
+            articles: parsedData.articles
+        })
+
+    }
+
+    handleNextClick = async () => {
+        console.log("Next");
+        if (this.state.page + 1 > Math.ceil(this.state.totalResults / 20)) {
+
+        }
+        else {
+            let url = `https://newsapi.org/v2/top-headlines?country=in&apiKey=dbe57b028aeb41e285a226a94865f7a7&page=${this.state.page + 1}&pageSize=20`;
+            let data = await fetch(url);
+            let parsedData = await data.json()
+            console.log(parsedData);
+            this.setState({
+                page: this.state.page + 1,
+                articles: parsedData.articles
+            })
         }
     }
     render() {
+
         return (
-            <div className='container my-4 '>
-                <h1>InShorts - Today's Hotlines'</h1>
-                <div className="row my-3">
-                    {this.state.articles.map((element)=>{
-                        return  <div className="col-md-4 my-3"key={element.url}  >
-                        <Newsitem title={element.title} discription={element.description.slice(0,88)}  imgUrl={element.urlToImage} newsUrl = {element.url}
-                        />
-                    </div>
+            <div className="container my-3">
+                <h2>NewsMonkey - Top Headlines</h2>
+                <div className="row">
+                    {this.state.articles.map((element) => {
+                        return <div className="col-md-4" key={element.url}>
+                            <NewsItem title={element.title ? element.title : ""} description={element.description ? element.description : ""} imgUrl={element.urlToImage} newsUrl={element.url} />
+                        </div>
                     })}
-                   
+                </div>
+                <div className="container d-flex justify-content-between">
+                    <button disabled={this.state.page <= 1} type="button" className="btn btn-dark" onClick={this.handlePrevClick}> &larr; Previous</button>
+                    <button type="button" className="btn btn-dark" onClick={this.handleNextClick}>Next &rarr;</button>
                 </div>
             </div>
         )
     }
 }
+export default News
