@@ -6,21 +6,17 @@ export default class News extends Component {
     return (
       <div>
         <div className="container my-4">
-        <h2>Inshort's - India's Best News App</h2>
-        <div className="row my-3">
-                <div className="col-md-4">
-                    <Newsitem title= "My title" discription = "my dis" />
-                     
-                </div>
-                <div className="col-md-4">
-                    <Newsitem/>
-                    
-                </div>
-                <div className="col-md-4">
-                    <Newsitem/>
-                    
-                </div>
-        </div>
+          <h2>Inshort's - Top headlines</h2>
+          <div className="row my-3">
+            {this.state.article.map((element) => {
+              //! every maped element should have a unique key thats why we have to asign one and jo return ho rha h usme key asign hotih
+              return <div className="col-md-4" key={element.url}>
+                <Newsitem  title={element.title}  description={element.description} imgUrl = {element.urlToImage} Newsurl={element.url}/>
+              </div>
+
+            })}
+
+          </div>
 
         </div>
       </div>

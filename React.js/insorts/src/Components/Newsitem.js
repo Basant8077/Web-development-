@@ -2,14 +2,15 @@ import React, { Component } from 'react'
 
 export default class Newsitem extends Component {
     render() {
+       let  [title,description,urlToImage,Newsurl]= this.props;
         return (
             <div>
                 <div className="card" style={{ width: "18rem" }}>
-                    <img src="https://images.moneycontrol.com/static-mcnews/2022/03/Debasish-Panda-770x433.jpg" className="card-img-top" alt="..." />
+                    <img src={urlToImage} className="card-img-top" alt="..." />
                     <div className="card-body">
-                        <h5 className="card-title">Card title</h5>
-                        <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                        <a href="/newsapp" className="btn btn-primary">Go somewhere</a>
+                        <h5 className="card-title">{title}</h5>
+                        <p className="card-text">{description}</p>
+                        <a href={Newsurl} target="_blank "className="btn btn-primary">Read more...</a>
                     </div>
                 </div>
             </div>
