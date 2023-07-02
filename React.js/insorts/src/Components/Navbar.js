@@ -19,17 +19,28 @@ export class Navbar extends Component {
                     <div className="collapse navbar-collapse" id="navbarNav">
                         <ul className="navbar-nav">
                             <li className="nav-item active">
-                                <a className="nav-link" href="/newsapp">Home <span className="sr-only">(current)</span></a>
+                                <a className="nav-link" href="/newsapp">business<span className="sr-only">(current)</span></a>
                             </li>
-                            <li className="nav-item">
-                                <a className="nav-link" href="/newsapp">Features</a>
+                            <li className="nav-item  active">
+                                <a className="nav-link" href="/newsapp">entertainment</a>
                             </li>
-                            <li className="nav-item">
-                                <a className="nav-link" href="/newsapp">Pricing</a>
+                            <li className="nav-item  active">
+                                <a className="nav-link" href="/newsapp">general</a>
                             </li>
-                            <li className="nav-item">
-                                <a className="nav-link disabled">Disabled</a>
+                            <li className="nav-item active ">
+                                <a className="nav-link disabled">health</a>
                             </li>
+                            <li className="nav-item  active" >
+                                <a className="nav-link disabled">science</a>
+                            </li>
+                            <li className="nav-item  active">
+                                <a className="nav-link disabled">sports</a>
+                            </li>
+                            <li className="nav-item  active">
+                                <a className="nav-link disabled">technology</a>
+                            </li>
+                           
+                            
                         </ul>
                     </div>
                 </nav>

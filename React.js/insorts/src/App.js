@@ -3,21 +3,16 @@ import './App.css';
 import Navbar from './Components/Navbar';
 import React, { Component } from 'react'
 import News from './Components/News';
+import Spinner from './Components/Spinner';
 
 export default class App extends Component {
-  constructor(props){
-    super(props);
-    this.state ={
-       
-    }
-  }
 
   
   render() {
     return (
       <div>
-      <Navbar> </Navbar>
-      <News/>
+      <Navbar/>
+      <News pagesize = {9} country = "us" category = 'general'/>
       </div>
     )
   
