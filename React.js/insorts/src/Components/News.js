@@ -4,16 +4,6 @@ import Spinner from './Spinner';
 import PropTypes from 'prop-types'
 
 export default class News extends Component {
-  //  static defaultProps = {
-  //   country: 'in',
-  //   pagesize: 9,
-  //   category: 'general'
-  // };
-  // static propTypes = {
-  //   country: PropTypes.string.isRequired,
-  //   pagesize: PropTypes.number.isRequired
-  // };
-  
 
   constructor() {
     super();
@@ -55,7 +45,7 @@ export default class News extends Component {
     }
   }
   handlepreviousclick = async () => {
-    let url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=70c24b93845f4b2395e274ae78fa4a4f&page=${this.state.page - 1}&pagesize=${this.props.pagesize}`
+    let url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=70c24b93845f4b2395e274ae78fa4a4f&page=${this.state.page -1 }&pagesize=${this.props.pagesize}`
     this.setState({ loading: true })
     let data = await fetch(url);
     let parseddata = await data.json();
@@ -78,7 +68,7 @@ export default class News extends Component {
 
 
               return <div className="col-md-4 my-3" key={element.url}>
-                <Newsitem title={element.title} description={element.description} imgUrl={element.urlToImage} Newsurl={element.url} />
+                <Newsitem title={element.title} description={element.description} imgUrl={element.urlToImage} Newsurl={element.url} date ={ element.publishedAt} author = {element.author} source = {element.source.name}/>
               </div>
 
             })}
@@ -87,7 +77,7 @@ export default class News extends Component {
           <div className="d-flex justify-content-between">
             <button type="button " disabled={this.state.page <= 1} onClick={this.handlepreviousclick} className="btn btn-secondary">Previous</button>
 
-            <button type="button" id='nextpage' onClick={this.handlenextclick} className="btn btn-success" disabled={this.state.page + 1 > Math.ceil(this.state.totalResults / this.state.pagesize)} >Next</button>
+            <button type="button" id='nextpage' onClick={this.handlenextclick} className="btn btn-success" disabled={this.state.page + 1 > Math.ceil(this.state.totalResults / this.state.pagesize)}  >Next</button>
 
           </div>
 
@@ -99,7 +89,7 @@ export default class News extends Component {
 News.defaultProps = {
   country: 'in',
   pagesize: 9,
-  category:'general'
+  category:'health'
 };
 News.propTypes = {
   country: PropTypes.string.isRequired,
