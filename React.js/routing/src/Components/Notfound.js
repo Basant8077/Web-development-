@@ -1,9 +1,16 @@
-import React from 'react'
-
+import React, { useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
 export default function Notfound() {
+  
+  const navigate = useNavigate();
+useEffect(()=>{
+  setTimeout( ()=>{
+    // navigate("/")
+    navigate(-1);
+  },1000)
+})
+
   return (
-    <div>
-      <h1>Enter a valid route name</h1>
-    </div>
+    <h1>Not Found</h1>
   )
 }
