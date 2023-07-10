@@ -3,6 +3,7 @@ import Newsitem from './Newsitem'
 import Spinner from './Spinner';
 import PropTypes from 'prop-types'
 import InfiniteScroll from "react-infinite-scroll-component";
+import './News.css';
 
 export default class News extends Component {
 
@@ -36,40 +37,46 @@ export default class News extends Component {
   }
 
   async ubdate() {
-    let url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=70c24b93845f4b2395e274ae78fa4a4f&page=${this.state.page}&pagesize=${this.props.pagesize}`
-    // this.setState({ loading: true })
+    this.props.setProgress(10);
+
+    let url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=${this.props.apikey}&page=${this.state.page}&pagesize=${this.props.pagesize}`
+    this.setState({ loading: true })
+
     let data = await fetch(url);
+    this.props.setProgress(30);
     let parseddata = await data.json();
+    this.props.setProgress(50);
     this.setState({
       articles: parseddata.articles,
       totalResults: parseddata.totalResults,
       loading: false
-      
+
     })
+    this.props.setProgress(100);
   }
   async componentDidMount() {
     this.ubdate();
 
   }
   fetchMoreData = async () => {
-    setTimeout(async()=>{
+    setTimeout(async () => {
+      let url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=${this.props.apikey}&page=${this.state.page + 1}&pagesize=${this.props.pagesize}`
       this.setState({
         page: this.state.page + 1
       });
-      let url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=70c24b93845f4b2395e274ae78fa4a4f&page=${this.state.page}&pagesize=${this.props.pagesize}`
-   
-    let data = await fetch(url);
-    let parseddata = await data.json();
-    this.setState({
-      articles: this.state.articles.concat(parseddata.articles),
-      totalResults: parseddata.totalResults,
-      loading: false
-    
-    })
-    },3000)
-    
 
-    
+      let data = await fetch(url);
+      let parseddata = await data.json();
+      this.setState({
+        articles: this.state.articles.concat(parseddata.articles),
+        totalResults: parseddata.totalResults,
+        loading: false
+
+      })
+    }, 2000)
+
+
+
 
   };
 
@@ -95,7 +102,7 @@ export default class News extends Component {
 
       <div style={{ backgroundColor: "#202020", color: "white" }}>
 
-        <h1 className="text-center">Inshort's - Top headlines on {this.props.category}</h1>
+
         {/* {this.state.loading && <Spinner />} */}
 
         <InfiniteScroll
@@ -103,9 +110,10 @@ export default class News extends Component {
           next={this.fetchMoreData}
           hasMore={this.state.articles.length !== this.state
             .totalResults}
-          loader=  { <Spinner />}
+          loader={<Spinner />}
         >
-          <div className="container">
+          <div className="container  margin " >
+            <h1 className="text-center">Inshort's - Top headlines on {this.props.category}</h1>
             <div className="row my-5">
 
               {this.state.articles.map((element) => {
@@ -122,7 +130,7 @@ export default class News extends Component {
             </div>
           </div>
         </InfiniteScroll>
-{/* 
+        {/* 
         <div className="d-flex justify-content-between">
           <button type="button " disabled={this.state.page <= 1} onClick={this.handlepreviousclick} className="btn btn-secondary">Previous</button>
 

@@ -9,7 +9,7 @@ export class Navbar extends Component {
     render() {
         return (
             <div>
-                <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
+                <nav className="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
                     <a className="navbar-brand" href="/newsapp">
                         <img src="https://img.freepik.com/premium-photo/fire-alphabet-letter-i-isolated-black-background_564276-9241.jpg?w=740" width="30" height="30" alt="IMG" />
                     </a>
