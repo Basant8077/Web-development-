@@ -13,10 +13,11 @@ const UserSchema = new Schema({
     password: {
         type: String,
         required: true
-    },
-    date: {
-        type: date,
-        default: Date.now
-    }}
+    }
+    // date: {
+    //     type: date,
+    //     default: Date.now
+    // }
+}
 );
 module.exports = mongoose.model('User', UserSchema);
