@@ -4,8 +4,11 @@ const express = require('express')
 connectToMongo();
 
 const app = express()
-const port = 3000
+const port = 5000
+
+//midewares
 app.use(express.json())
+
 //available routes
 app.use('/api/auth',require('./routes/auth'));
 // app.use('/api/notes',require('./routes/notes'));
