@@ -1,10 +1,11 @@
 const express = require('express');
 const bcrypt = require('bcryptjs');
+var jwt = require('jsonwebtoken');
 const User = require('../models/User')
 const { query, validationResult, body } = require('express-validator');
 const Router = express.Router();
 const saltRounds = 10;
-
+const JWT_SECRET = "HloBasantvicky" //any string can become jetsecret
 //*create a user using: POST "/api/auth/createUser" ,No Auth required
 
 Router.post('/createUser', [
@@ -26,15 +27,26 @@ try {
     if(user){
         return res.status(400).json({ errors: "This Email already exists" });
     }
-    
+    //* convert normal password to a hash password + add salt th given above
+
    const secPassword = await bcrypt.hash(req.body.password, saltRounds);
 
     user = await User.create({
         name: req.body.name,
-        password: secPassword,
+        password: secPassword, 
         email: req.body.email,
     })
-    res.send(user)
+
+    const data = {  //! should be unique and accesing a db using id is fast as compare to other things
+        user: {
+            id: user.id
+        }
+    }
+
+    const JWT_TOKEN = jwt.sign(data, JWT_SECRET); 
+    res.json({JWT_TOKEN})
+
+    // res.json(user)
 }
  catch (error) {
     console.error(error.message);
