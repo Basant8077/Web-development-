@@ -5,8 +5,10 @@ const User = require('../models/User')
 const { query, validationResult, body } = require('express-validator');
 const Router = express.Router();
 const saltRounds = 10;
-const JWT_SECRET = "HloBasantvicky" //any string can become jetsecret
-//*create a user using: POST "/api/auth/createUser" ,No Auth required
+const JWT_SECRET = "HloBasantvicky" //any string can become jwtsecret
+var fetchuser = require('../Middleware/Fetchuser');
+
+//* ROUTE 1: create a user using: POST "/api/auth/createUser" ,No Auth required
 
 Router.post('/createUser', [
     body("name", "Enter a valid name").isLength({ min: 3 }),
@@ -55,7 +57,7 @@ Router.post('/createUser', [
 
 })
 
-// Authenticate a user using /api/createUser/login  . no login required
+//?b ROUTE 2   Authenticate a user using /api/login  . no login required
 
 
 
@@ -72,10 +74,10 @@ Router.post('/login', [
         return res.status(400).json({ errors: error.array() });
     }
 
-    const {email, password} = req.body; //destructure entered email and password by user 
+    const { email, password } = req.body; //destructure entered email and password by user 
 
     try {
-        let user = await User.findOne({ email});
+        let user = await User.findOne({ email });
         if (!user) {
             return res.status(400).json({ errors: "Try to login with correct info" });
         }
@@ -83,7 +85,7 @@ Router.post('/login', [
         if (!passwordcompare) {
             return res.status(400).json({ errors: "Try to login with correct info" });
         }
-       
+
         const data = {  //! should be unique and accesing a db using id is fast as compare to other things
             user: {
                 id: user.id
@@ -97,5 +99,21 @@ Router.post('/login', [
         res.status(500).send("Internal server error")
     }
 })
+
+//todo:  ROUTE 3:- GET LOGGED IN USER DETAILS using post /api/auth/getuser "Login required"
+try {
+
+    Router.post('/getuser',fetchuser, async (req, res) => {
+
+      
+        const userId = req.user.id
+        const user = await User.findById(userId).select("-password") //we will get everything except password
+        res.send(user)
+
+    })
+} catch (error) {
+    console.error(error.message);
+    res.status(500).send("Internal server error")
+}
 
 module.exports = Router;
