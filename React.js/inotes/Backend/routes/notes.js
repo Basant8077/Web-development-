@@ -42,10 +42,10 @@ Router.post('/addnote', fetchuser, [
 //ROUTE 3 to update the existing note api/note/updatenote login required
 //todo :- put is use to update note. and fetchuser is use for user validation
 
-Router.put('/updateNote/:id', fetchuser, async (req,res) => {
+Router.put('/updateNote/:id', fetchuser, async (req, res) => {
 
     //create a new note object
-    const {title, description,tag}=req.body;
+    const { title, description, tag } = req.body;
     try {
         // Create a newNote object
         const newNote = {};
@@ -66,6 +66,31 @@ Router.put('/updateNote/:id', fetchuser, async (req,res) => {
         }
         note = await Notes.findByIdAndUpdate(req.params.id, { $set: newNote }, { new: true })
         res.json({ note });
+    } catch (error) {
+        console.error(error.message);
+        res.status(500).send("Internal Server Error");
+    }
+})
+//Route 4 delete an existing note using delete api/notes/deletenote
+Router.delete('/deletenote/:id', fetchuser, async (req, res) => {
+
+    //create a new note object
+
+    try {
+        //find the noteto be deleted and delete it
+        let note = await Notes.findById(req.params.id); //above id which you want to update /updatenote/:id
+        // Now we have the note which you want to update 
+        //?case 1 ===> note is not present
+
+        if (!note) { return res.status(404).send("Not Found") }
+
+        //allow deletion only if user is varified 
+
+        if (note.user.toString() !== req.user.id) {
+            return res.status(401).send("Not Allowed");
+        }
+        note = await Notes.findByIdAndDelete(req.params.id)
+        res.json({ "Sucess": "Note has been deleted", note: note });
     } catch (error) {
         console.error(error.message);
         res.status(500).send("Internal Server Error");
