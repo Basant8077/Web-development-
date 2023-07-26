@@ -1,6 +1,9 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
+import { useEffect } from 'react'
+import React  from 'react'
+import { Link , useLocation } from 'react-router-dom'
 function Navbar(props) {
+
+  const location = useLocation();
   return (
     <nav className={`navbar navbar-expand-lg bg-body-tertiary bg-${props.mode} border-bottom border-bottom-${props.mode}`} data-bs-theme={`${props.mode}`}>
 
@@ -12,16 +15,16 @@ function Navbar(props) {
         <div className="collapse navbar-collapse" id="navbarNav">
           <ul className="navbar-nav">
             <li className="nav-item">
-              <Link className="nav-link active" aria-current="page" to={"/"} >Home</Link>
+              <Link className={`nav-link ${location.pathname==="/"? "active": ""}`} aria-current="page" to={"/"} >Home</Link>
             </li>
             <li className="nav-item">
-              <Link className="nav-link" to={"/about"}> About </Link>
+              <Link  className={`nav-link ${location.pathname==="/about"? "active": ""}`} to={"/about"}> About </Link>
             </li>
           </ul>
         </div>
         <div className="form-check form-switch">
           <input className="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked" onClick={props.changemode} />
-          <label className="form-check-label" for="flexSwitchCheckChecked">{`${props.mode} Mode`}</label>
+          <label className="form-check-label" htmlFor="flexSwitchCheckChecked">{`${props.mode} Mode`}</label>
         </div>
 
       </div>
