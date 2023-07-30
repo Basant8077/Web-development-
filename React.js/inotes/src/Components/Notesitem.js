@@ -1,7 +1,21 @@
+import { useContext } from 'react'
 import React from 'react'
+import NoteContext from '../context/notes/noteContext'
+
 
 function Notesitem(props) {
+    const contex = useContext(NoteContext);
     const { notes } = props
+    const { deletion, editnote } = contex;
+
+    //! utility functions
+    const handleDelete = (id) => {
+        deletion(id);
+    }
+    const handleEdit = (id, title, description) => {
+        editnote(id, title, description);
+    }
+
     return (
         <>
             <div className="col-md-4">
@@ -9,11 +23,11 @@ function Notesitem(props) {
                     <div className="card-body">
                         <h5 className="card-title">{notes.title}</h5>
                         <p className="card-text my-2">{notes.description}</p>
-                        <p className="card-text"><small className="text-body-secondary"><i className="fa-solid fa-tag mx-2"></i>{notes.tag}</small></p>
+                        <p className="card-text"><small className="text-body-secondary"><i className="fa-solid fa-tag mx-2 " ></i>{notes.tag}</small></p>
                         <p className="card-text"><small className="text-body-secondary">{new Date(notes.date).toGMTString()}</small></p>
                         <div className="d-flex justify-content-evenly">
 
-                            <i className="fa-solid fa-trash"></i><i className="fa-solid fa-file-pen"></i>
+                            <i className="fa-solid fa-trash" onClick={() => { handleDelete(notes._id) }} ></i><i className="fa-solid fa-file-pen" onClick={() => { handleEdit(notes._id, notes.title, notes.description) }} ></i>
                         </div>
                     </div>
                 </div>

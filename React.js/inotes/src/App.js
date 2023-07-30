@@ -41,7 +41,7 @@ function App() {
     <>
     <NoteState>
       <Navbar mode={mode} changemode={changemode} />
-      <div className="container">
+      <div className="container " style={{overflow: 'hidden'}}>
       <Alert alert = {alert}/>
       <Routes>
         <Route path="/" element={<Home changeAlert = {changeAlert} mode= {mode} /> } />
