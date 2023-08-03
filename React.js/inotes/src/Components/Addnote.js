@@ -5,7 +5,7 @@ function Addnote(props) {
     const [text , setText] = useState({title:"", description: "" , tag : "testing ta is present"});
     const {mode , changeAlert} = props
     const contex = useContext(NoteContext);
-    const {addition ,notes} = contex;
+    const {addition} = contex;
 
     //! functions
 
@@ -37,6 +37,10 @@ function Addnote(props) {
         <div className="mb-3 shadow-lg p-3 mb-5 bg-body-tertiary rounded" style={{color: "black"}}>
             <label htmlFor="description" className="form-label"><h3>Description</h3></label>
             <textarea onChange={onchange}  name='description' className="form-control" id="description" rows="5" placeholder='Enter Whats i your mind' ></textarea>
+        </div>
+        <div className="mb-3 shadow-lg p-3 mb-5 bg-body-tertiary rounded" style={{color: "black"}} >
+            <label htmlFor="tag"  className="form-label"><h3>Tag</h3></label>
+            <input type="text" className="form-control" name="tag"  onChange={onchange} id="tag" placeholder="Enter your Title here" />
         </div>
         <button type="button" className="btn btn-outline-success" onClick={handlesubmit} >Add Note</button>
 

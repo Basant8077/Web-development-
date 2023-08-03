@@ -1,5 +1,5 @@
 import React from 'react'
-import { useContext } from 'react'
+import { useContext , useEffect } from 'react'
 import NoteContext from '../context/notes/noteContext';
 
 import Notesitem from './Notesitem';
@@ -8,8 +8,14 @@ import Addnote from './Addnote';
 const Notes = (props) => {
 
   const contex = useContext(NoteContext);
-  const { notes } = contex;
+  const { notes , fetchdata} = contex;
   const { mode, changeAlert } = props
+  
+  useEffect(()=>{
+   
+    fetchdata();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  },[])
 
   return (<>
     <div className="container my-4 w-75 p-3 ">

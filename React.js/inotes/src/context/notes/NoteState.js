@@ -3,81 +3,53 @@ import NoteContext from "./noteContext";
 
 const NoteState = (props) => {
 
-  const data = [
-
-    {
-      "_id": "64c00946cff6261790419ae2",
-      "user": "64b40a9511c9b360a4622664",
-      "title": "Testing a Note",
-      "description": "Adding a testing note  BDSA AIDA 'D ISA  DSADJ L DSAD K IDHA D; ;hd oij dfas 'hd /FBA D/LS  FIJDFLS D;'A D'ad F F' JF' P ASFNK CV'/[ FOFJSDL FAJFSD USACVS A  JFDS SF  JFA  SFD  FOASS' 'A  ]",
-      "tag": "testing",
-      "date": "2023-07-25T17:41:26.085Z",
-      "__v": 0
-    },
-    {
-      "_id": "64c0097acff6261790419ae5",
-      "user": "64b40a9511c9b360a4622664 ",
-      "title": "Second testing note",
-      "description": "Adding a testing note lorem32jdlwqjdowqjdowqjojdwqdjwqjdwqje;djqw;d;wqjdlwahf fweodfoiwejfdoijweodf fwejdfpowejdf' fwejfdl dfwejdo  fdwedfhiwsdj odfwqojdw wjdfjf owdfiwejdf  df'adf;i f'wjnsad' 'DDWS Y ak jsd' D   dasdh ' D DP ",
-      "tag": "testing",
-      "date": "2023-07-25T17:42:18.002Z",
-      "__v": 0
-    },
-    {
-      "_id": "64c0097acff6261790419ae5",
-      "user": "64b40a9511c9b360a4622664 ",
-      "title": "Second testing note",
-      "description": "Adding a testing note lorem32jdlwqjdowqjdowqjojdwqdjwqjdwqje;djqw;d;wqjdlwahf fweodfoiwejfdoijweodf fwejdfpowejdf' fwejfdl dfwejdo  fdwedfhiwsdj odfwqojdw wjdfjf owdfiwejdf  df'adf;i f'wjnsad' 'DDWS Y ak jsd' D   dasdh ' D DP ",
-      "tag": "testing",
-      "date": "2023-07-25T17:42:18.002Z",
-      "__v": 0
-    },
-
-    {
-      "_id": "64c00946cff6261790419ae2",
-      "user": "64b40a9511c9b360a4622664",
-      "title": "Testing a Note",
-      "description": "Adding a testing note  BDSA AIDA 'D ISA  DSADJ L DSAD K IDHA D; ;hd oij dfas 'hd /FBA D/LS  FIJDFLS D;'A D'ad F F' JF' P ASFNK CV'/[ FOFJSDL FAJFSD USACVS A  JFDS SF  JFA  SFD  FOASS' 'A  ]",
-      "tag": "testing",
-      "date": "2023-07-25T17:41:26.085Z",
-      "__v": 0
-    },
-    {
-      "_id": "64c0097acff6261790419ae5",
-      "user": "64b40a9511c9b360a4622664 ",
-      "title": "Second testing note",
-      "description": "Adding a testing note lorem32jdlwqjdowqjdowqjojdwqdjwqjdwqje;djqw;d;wqjdlwahf fweodfoiwejfdoijweodf fwejdfpowejdf' fwejfdl dfwejdo  fdwedfhiwsdj odfwqojdw wjdfjf owdfiwejdf  df'adf;i f'wjnsad' 'DDWS Y ak jsd' D   dasdh ' D DP ",
-      "tag": "testing",
-      "date": "2023-07-25T17:42:18.002Z",
-      "__v": 0
-    },
-    {
-      "_id": "64c0097acff6261790419ae5",
-      "user": "64b40a9511c9b360a4622664 ",
-      "title": "Second testing note",
-      "description": "Adding a testing note lorem32jdlwqjdowqjdowqjojdwqdjwqjdwqje;djqw;d;wqjdlwahf fweodfoiwejfdoijweodf fwejdfpowejdf' fwejfdl dfwejdo  fdwedfhiwsdj odfwqojdw wjdfjf owdfiwejdf  df'adf;i f'wjnsad' 'DDWS Y ak jsd' D   dasdh ' D DP ",
-      "tag": "testing",
-      "date": "2023-07-25T17:42:18.002Z",
-      "__v": 0
-    },
-  ]
+  const data = [];
   const [notes, setNotes] = useState(data);
+
+  // 1) FETCH DATA FROM BACKEND
+  
+    const fetchdata = async () => {
+      const response = await fetch("http://localhost:5000/api/notes/fetchAllNotes", {
+        method: "GET",  //fetch returns a promise
+        headers: {
+          "Content-Type": "application/json",
+          "auth-token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjRiNDBhOTUxMWM5YjM2MGE0NjIyNjY0In0sImlhdCI6MTY4OTc0ODkwOH0.CSmc8q2Rw196EZde76BXj2X-RfaYDGDrhjs7hAdpZ2Q"
+        }
+      });
+      const json = await response.json(); // parses JSON response into native JavaScript objects
+      console.log(json);
+       setNotes(json);
+    }
+ 
+
   //additon of note
-  const addition = (title, description, tag) => {
-    console.log("adding a new note")
-    const note = {
-      "_id": "64c0097acff6261790419ae5",
-      "user": "64b40a9511c9b360a4622664 ",
-      "title": title,
-      "description": description,
-      "tag": tag,
-      "date": "2023-07-25T17:42:18.002Z",
-      "__v": 0
-    };
-    setNotes(notes.concat(note)); //always concat with state note with the original data array it will only add once and edit himselves
-  }
+  const addition = async(title, description, tag) => {
+
+      const response = await fetch("http://localhost:5000/api/notes/addnote", {
+        method: "POST", 
+        headers: {
+          "Content-Type": "application/json",
+          "auth-token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjRiNDBhOTUxMWM5YjM2MGE0NjIyNjY0In0sImlhdCI6MTY4OTc0ODkwOH0.CSmc8q2Rw196EZde76BXj2X-RfaYDGDrhjs7hAdpZ2Q"
+        },
+        body: JSON.stringify({title , description , tag})
+      });
+      const note = await response.json(); // parses JSON response into native JavaScript objects
+      setNotes(notes.concat(note))
+    }
+
   //deletion of note
-  const deletion = (id) => {
+  const deletion = async (id) => {
+    const response = await fetch(`http://localhost:5000/api/notes/deletenote/${id}`, {
+        method: "DELETE", 
+        headers: {
+          "Content-Type": "application/json",
+          "auth-token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjRiNDBhOTUxMWM5YjM2MGE0NjIyNjY0In0sImlhdCI6MTY4OTc0ODkwOH0.CSmc8q2Rw196EZde76BXj2X-RfaYDGDrhjs7hAdpZ2Q"
+        },
+        
+      });
+      // eslint-disable-next-line
+       const note = await response.json(); // parses JSON response into native JavaScript objects
+
     const newnote = notes.filter((note) => { return note._id !== id })
     setNotes(newnote);
   }
@@ -96,7 +68,7 @@ const NoteState = (props) => {
 
   return (
 
-    <NoteContext.Provider value={{ notes, addition, deletion, editnote }}>
+    <NoteContext.Provider value={{ notes, addition, deletion, editnote , fetchdata }}>
       {props.children}
     </NoteContext.Provider>
   )
