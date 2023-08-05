@@ -5,16 +5,14 @@ import NoteContext from '../context/notes/noteContext'
 
 function Notesitem(props) {
     const contex = useContext(NoteContext);
-    const { notes } = props
-    const { deletion, editnote } = contex;
+    const { notes  , updateNote } = props
+    const { deletion } = contex;
 
     //! utility functions
     const handleDelete = (id) => {
         deletion(id);
     }
-    const handleEdit = (id, title, description) => {
-        editnote(id, title, description);
-    }
+   
 
     return (
         <>
@@ -27,7 +25,7 @@ function Notesitem(props) {
                         <p className="card-text"><small className="text-body-secondary">{new Date(notes.date).toGMTString()}</small></p>
                         <div className="d-flex justify-content-evenly">
 
-                            <i className="fa-solid fa-trash" onClick={() => { handleDelete(notes._id) }} ></i><i className="fa-solid fa-file-pen" onClick={() => { handleEdit(notes._id, notes.title, notes.description) }} ></i>
+                            <i className="fa-solid fa-trash" onClick={() => { handleDelete(notes._id) }} ></i><i className="fa-solid fa-file-pen" onClick={()=>{updateNote(notes)}} ></i>
                         </div>
                     </div>
                 </div>
