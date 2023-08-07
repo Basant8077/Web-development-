@@ -21,7 +21,7 @@ function Signup(props) {
     });
     const newUser = await response.json();
     localStorage.setItem("token" , newUser.JWT_TOKEN);
-    changeAlert("Logged in","success");
+    changeAlert("Account created Successfullly","success");
     navigate('/');
     
   }

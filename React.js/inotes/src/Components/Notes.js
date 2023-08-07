@@ -1,12 +1,14 @@
 import React, { useState } from 'react'
 import { useContext, useEffect , useRef} from 'react'
 import NoteContext from '../context/notes/noteContext';
+import { useNavigate } from 'react-router-dom';
 
 import Notesitem from './Notesitem';
 import Addnote from './Addnote';
 
 const Notes = (props) => {
 
+  const navigate = useNavigate();
   const contex = useContext(NoteContext);
   const { notes, fetchdata , editnote } = contex;
   const { mode, changeAlert } = props
@@ -15,14 +17,19 @@ const Notes = (props) => {
 
   const [text , setText] = useState( { id: "", etitle:"", edescription: "" , etag : ""});
   useEffect(() => {
-
-    fetchdata();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    if(localStorage.getItem("token")){
+      fetchdata();
+    }
+    else{
+      navigate("/login");
+    }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   const updateNote = (currentnotes)=>{
     ref.current.click();
     setText({ id: currentnotes._id, etitle: currentnotes.title , edescription : currentnotes.description , etag: currentnotes.tag});
+   
   
   }
 
@@ -34,6 +41,7 @@ const Notes = (props) => {
     console.log("updating note")
     editnote(text.id , text.etitle , text.edescription , text.etag )
     refclose.current.click();
+    changeAlert("Edited Successfully","success");
 
   }
 
@@ -78,7 +86,7 @@ const Notes = (props) => {
       </div>
       <div className="  row " >
         {notes.map((notes, index) => {
-          return <Notesitem notes={notes} key={index}  updateNote = {updateNote} />
+          return <Notesitem notes={notes} key={index}  updateNote = {updateNote} changeAlert={changeAlert} />
         })}
       </div>
     </div>

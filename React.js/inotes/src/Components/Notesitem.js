@@ -5,12 +5,14 @@ import NoteContext from '../context/notes/noteContext'
 
 function Notesitem(props) {
     const contex = useContext(NoteContext);
-    const { notes  , updateNote } = props
+    const { notes  , updateNote ,changeAlert } = props
     const { deletion } = contex;
 
     //! utility functions
     const handleDelete = (id) => {
         deletion(id);
+        changeAlert("Deleted " , "danger")
+
     }
    
 
