@@ -66,12 +66,13 @@ Router.post('/login', [
     body("password", "To short").exists().trim().isLength({ min: 8 })
 ], async (req, res) => {
 
+    let success = false;
     const error = validationResult(req);
 
     //!if there will be error it will go inside if to show
 
     if (!error.isEmpty()) {
-        return res.status(400).json({ errors: error.array() });
+        return res.status(400).json({ success, errors: error.array() });
     }
 
     const { email, password } = req.body; //destructure entered email and password by user 
@@ -79,11 +80,11 @@ Router.post('/login', [
     try {
         let user = await User.findOne({ email });
         if (!user) {
-            return res.status(400).json({ errors: "Try to login with correct info" });
+            return res.status(400).json({ success, errors: "Try to login with correct info" });
         }
         const passwordcompare = await bcrypt.compare(password, user.password);
         if (!passwordcompare) {
-            return res.status(400).json({ errors: "Try to login with correct info" });
+            return res.status(400).json({ success, errors: "Try to login with correct info" });
         }
 
         const data = {  //! should be unique and accesing a db using id is fast as compare to other things
@@ -93,7 +94,8 @@ Router.post('/login', [
         }
 
         const JWT_TOKEN = jwt.sign(data, JWT_SECRET);
-        res.json({ JWT_TOKEN })
+        success = true;
+        res.json({ success,JWT_TOKEN })
     } catch (error) {
         console.error(error.message);
         res.status(500).send("Internal server error")

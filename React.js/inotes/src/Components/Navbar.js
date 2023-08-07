@@ -1,6 +1,5 @@
-import { useEffect } from 'react'
-import React  from 'react'
-import { Link , useLocation } from 'react-router-dom'
+import React from 'react'
+import { Link, useLocation } from 'react-router-dom'
 function Navbar(props) {
 
   const location = useLocation();
@@ -15,16 +14,21 @@ function Navbar(props) {
         <div className="collapse navbar-collapse" id="navbarNav">
           <ul className="navbar-nav">
             <li className="nav-item">
-              <Link className={`nav-link ${location.pathname==="/"? "active": ""}`} aria-current="page" to={"/"} >Home</Link>
+              <Link className={`nav-link ${location.pathname === "/" ? "active" : ""}`} aria-current="page" to={"/"} >Home</Link>
             </li>
             <li className="nav-item">
-              <Link  className={`nav-link ${location.pathname==="/about"? "active": ""}`} to={"/about"}> About </Link>
+              <Link className={`nav-link ${location.pathname === "/about" ? "active" : ""}`} to={"/about"}> About </Link>
             </li>
           </ul>
         </div>
-        <div className="form-check form-switch">
-          <input className="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked" onClick={props.changemode} />
-          <label className="form-check-label" htmlFor="flexSwitchCheckChecked">{`${props.mode} Mode`}</label>
+        <div className="d-flex justify-content-between">
+          <div className="form-check form-switch">
+            <input className="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked" onClick={props.changemode} />
+            <label className="form-check-label" htmlFor="flexSwitchCheckChecked">{`${props.mode} Mode`}</label>
+          </div>
+          <Link className="btn btn-primary mx-2" to="/Login" role="button">Login</Link>
+          <Link className="btn btn-outline-primary mx-2" to="/signup" role="button">SignUp</Link>
+
         </div>
 
       </div>

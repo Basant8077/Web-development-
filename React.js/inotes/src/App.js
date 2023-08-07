@@ -7,6 +7,8 @@ import { Route, Routes } from 'react-router-dom';
 import { useState } from 'react';
 import NoteState from './context/notes/NoteState';
 import Alert from './Components/Alert';
+import Login from './Components/Login';
+import Signup from './Components/Signup';
 
 function App() {
   //All functions will written here
@@ -46,6 +48,8 @@ function App() {
       <Routes>
         <Route path="/" element={<Home changeAlert = {changeAlert} mode= {mode} /> } />
         <Route path='/about' element={<About />} />
+        <Route path='/login' element={<Login changeAlert = {changeAlert}/>}  />
+        <Route path='/signup' element={<Signup changeAlert={changeAlert}/>} />
       </Routes>
       </div>
     </NoteState>

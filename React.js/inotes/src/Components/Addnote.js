@@ -32,17 +32,17 @@ function Addnote(props) {
         <h1> Add Note</h1>
         <div className="mb-3 shadow-lg p-3 mb-5 bg-body-tertiary rounded" style={{color: "black"}} >
             <label htmlFor="title"  className="form-label"><h3>Title</h3></label>
-            <input type="text" className="form-control" name="title"  onChange={onchange} id="title" placeholder="Enter your Title here" />
+            <input type="text" className="form-control"  required minLength={5}  name="title"  onChange={onchange} id="title" placeholder="Enter your Title here" />
         </div>
         <div className="mb-3 shadow-lg p-3 mb-5 bg-body-tertiary rounded" style={{color: "black"}}>
             <label htmlFor="description" className="form-label"><h3>Description</h3></label>
-            <textarea onChange={onchange}  name='description' className="form-control" id="description" rows="5" placeholder='Enter Whats i your mind' ></textarea>
+            <textarea onChange={onchange}  name='description' required minLength={5}   className="form-control" id="description" rows="5" placeholder='Enter Whats i your mind' ></textarea>
         </div>
         <div className="mb-3 shadow-lg p-3 mb-5 bg-body-tertiary rounded" style={{color: "black"}} >
             <label htmlFor="tag"  className="form-label"><h3>Tag</h3></label>
-            <input type="text" className="form-control" name="tag"  onChange={onchange} id="tag" placeholder="Enter your Title here" />
+            <input type="text" className="form-control" name="tag" required minLength={5}    onChange={onchange} id="tag" placeholder="Enter your Title here" />
         </div>
-        <button type="button" className="btn btn-outline-success" onClick={handlesubmit} >Add Note</button>
+        <button type="button" disabled = {text.title.length < 3 || text.description.length < 5} className="btn btn-outline-success" onClick={handlesubmit} >Add Note</button>
 
     </div>
         <h1>Previous Note's</h1>

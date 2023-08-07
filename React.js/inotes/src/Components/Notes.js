@@ -58,15 +58,15 @@ const Notes = (props) => {
             <div className="modal-body">
             <div className="mb-3 shadow-lg p-3 mb-5 bg-body-tertiary rounded" >
             <label htmlFor="title"  className="form-label"><h3>Title</h3></label>
-            <input type="text" value={text.etitle} className="form-control" name="etitle"  onChange={onchange} id="etitle" placeholder="Enter your Title here" />
+            <input type="text" value={text.etitle} required minLength={5}   className="form-control" name="etitle"  onChange={onchange} id="etitle" placeholder="Enter your Title here" />
         </div>
         <div className="mb-3 shadow-lg p-3 mb-5 bg-body-tertiary rounded" >
             <label htmlFor="description"  className="form-label"><h3>Description</h3></label>
-            <textarea onChange={onchange} value={text.edescription}  name='edescription' className="form-control" id="edescription" rows="5" placeholder='Enter Whats i your mind' ></textarea>
+            <textarea onChange={onchange} value={text.edescription} required minLength={5}  name='edescription' className="form-control" id="edescription" rows="5" placeholder='Enter Whats i your mind' ></textarea>
         </div>
         <div className="mb-3 shadow-lg p-3 mb-5 bg-body-tertiary rounded" >
             <label htmlFor="tag"  className="form-label"><h3>Tag</h3></label>
-            <input type="text" value={text.etag} className="form-control" name="etag"  onChange={onchange} id="etag" placeholder="Enter your Title here" />
+            <input type="text" value={text.etag} className="form-control" name="etag" required minLength={5}    onChange={onchange} id="etag" placeholder="Enter your Title here" />
         </div>
             </div>
             <div className="modal-footer">
